@@ -1,25 +1,8 @@
-var work = {
-  "jobs": [
-    {
-      "employer": "AffiliateTraction / Pepperjam",
-      "title": "Web Designer",
-      "dates": "Nov 2012 - Feb 2017",
-      "description": "Worked directly with clients and account managers to strategize and execute successful, brand sensitive campaigns assets."
-    },
-    {
-      "employer": "R&B Cummunications",
-      "title": "Technician",
-      "dates": "April 2011 - May 2012",
-      "description": "Diegnosed and repaired work stations, build work stations, ran virus/malware scans and used bootloaders to diognose systems."
-    }
-  ]
-}
-
 var bio = {
   "name": "Andrew Cornell",
   "role": "Front-End Web Designer",
-  "welcomeMessage": "Welcome to my resume page!",
-  "bioPic": "images/me.jpg",
+  "welcomeMessage": "Hello! My name is Andrew and I want to enhance storytelling through user interaction design using cutting edge web techniques.",
+  "biopic": "images/me.jpg",
   "contacts": {
     "mobile": "831-419-4106",
     "email": "andrewjc88@gmail.com",
@@ -27,73 +10,166 @@ var bio = {
     "location": "San Francisco"
   },
   "skills": [
-    "Self Motivated", " Early Adopter", " User focused", "Naturally Inquisitive", " intuative responsive design centric!"
-  ]
+    "HTML5 / CSS3 / SASS", "JavaScript / jQuery", "JSON / AJAX", "Photoshop / Illustrator", "Wordpress / HubSpot", "Git / Github"
+  ],
+
+  "display": function() {
+
+    $("#header").prepend(HTMLheaderRole.replace('%data%', bio.role));
+    $("#header").prepend(HTMLheaderName.replace('%data%', bio.name));
+    $('#header').append(HTMLbioPic.replace('%data%', bio.biopic));
+    $('#header').append(HTMLwelcomeMsg.replace('%data%', bio.welcomeMessage));
+
+    $('#header').append(HTMLskillsStart);
+
+    $.each(bio.skills, function(data2) {
+      $('#skills').append(HTMLskills.replace('%data%', bio.skills[data2]));
+    });
+
+    $.each(bio.contacts, function(data1, data2) {
+      $('#topContacts').append(HTMLcontactGeneric.replace("%contact%", data1).replace('%data%', data2));
+      $('#footerContacts').append(HTMLcontactGeneric.replace("%contact%", data1).replace('%data%', data2));
+    });
+  }
+};
+
+var work = {
+  "jobs": [
+    {
+      "employer": "Freelance",
+      "location": "San Francisco, CA",
+      "title": "Front-End Designer",
+      "dates": "Feb 2017 - present",
+      "description": "Designed and implemented personal and small business wibsites for clients. Managed hosting, sketched layout and revised site to clients liking."
+    },
+    {
+      "employer": "AffiliateTraction / Pepperjam",
+      "location": "Santa Cruz, CA",
+      "title": "Web Designer",
+      "dates": "Nov 2012 - Feb 2017",
+      "description": "Worked directly with clients and account managers to strategize and execute successful, brand sensitive campaigns assets."
+    },
+    {
+      "employer": "R&B Cummunications",
+      "location": "Grass Valley, CA",
+      "title": "Technician",
+      "dates": "April 2011 - May 2012",
+      "description": "Diegnosed and repaired work stations, build work stations, ran virus/malware scans and used bootloaders to diognose systems."
+    }
+  ],
+  "display": function() {
+
+    $.each(work.jobs, function(i){
+
+      $('#workExperience').append(HTMLworkStart);
+
+      var myJobs = work.jobs[i];
+
+      var formattedEmployer = HTMLworkEmployer.replace("%data%", myJobs.employer);
+      var formattedTitle = HTMLworkTitle.replace("%data%", myJobs.title);
+      var formattedEmplyerTitle = formattedEmployer + formattedTitle;
+
+      $(".work-entry:last").append(formattedEmplyerTitle);
+
+      var formattedDates = HTMLworkDates.replace("%data%", myJobs.dates);
+      $(".work-entry:last").append(formattedDates);
+
+      var formattedLocation = HTMLworkLocation.replace("%data%", myJobs.location);
+      $(".work-entry:last").append(formattedLocation);
+
+      var formattedDescription = HTMLworkDescription.replace("%data%", myJobs.description);
+      $(".work-entry:last").append(formattedDescription);
+    });
+  }
 };
 
 var education = {
   "schools": [
     {
       "name": "Cabrillo College",
-      "city": "Santa Cruz, CA",
+      "location": "Santa Cruz, CA",
       "major": "Computer Science",
-      "dates": "2015 - Current"
+      "dates": "2016 - 2017"
     },
     {
       "name": "Sierra College",
-      "city": "Nevada City, Ca",
+      "location": "Nevada City, Ca",
       "major": "Computer engineering",
       "dates": "2010 – 2012"
     }
   ],
   "onlineCourses": [
     {
-      "title": "JavaScritp Syntax",
+      "title": "Front_End Nano degree",
       "school": "Udacity",
-      "dates": "2015-2016"
+      "dates": "2016 - Current"
     },
     {
-      "title": "Other code junk",
+      "title": "Mobile UX Design",
       "school": "Udacity",
-      "dates": "2015-2016"
+      "dates": "2017 - Current"
     }
-  ]
-}
+  ],
+  "display": function() {
+
+    $.each(education.schools, function(edu) {
+
+        $('#education').append(HTMLschoolStart);
+
+        var educations = education.schools;
+
+        var formattedSchoolName = HTMLschoolName.replace('%data%', educations[edu].name).replace("#", educations[edu].url);
+        $('.education-entry:last').append(formattedSchoolName);
+
+        var myDates = HTMLschoolDates.replace('%data%', educations[edu].dates);
+        $('.education-entry:last').append(myDates);
+
+        var myLocation = HTMLschoolLocation.replace('%data%', educations[edu].location);
+        $('.education-entry:last').append(myLocation);
+
+        var formattedMajor = HTMLschoolMajor.replace('%data%', educations[edu].major);
+        $('.education-entry:last').append(formattedMajor);
+    });
+  }
+};
 
 var projects = {
-  projects [
+  "projects": [
     {
       "title": "T49 Agency Website",
-      "dates": "aug-16/nov-17",
-      "description": "I made a website. It was a chill site for sure!"
-      "images": "http://placehold.it/350x150"
+      "dates": "2015-2016",
+      "description": "I made a website. It was a chill site for sure!",
+      "images": [
+        "images/coding.jpg"
+      ]
     },
     {
       "title": "My Resume Website",
-      "dates": "nov-13/someshit",
-      "description": "Made shit and stuff for an ugle site for my udacity program."
-      "images": "http://placehold.it/350x150"
+      "dates": "2016-2017",
+      "description": "Made a profesional resume site using jQuery and Javascript.",
+      "images": [
+          "images/hipcat.jpg"
+      ]
     }
-  ]
-}
+  ],
+  "display": function() {
+    for (project in projects.projects) {
+      $("#projects").append(HTMLprojectStart);
 
-projects.display = function() {
-  for (project in projects.projects){
-    $("#projects").append(HTMLprojectStart);
+      var formattedTitle = HTMLprojectTitle.replace("%data%", projects.projects[project].title);
+      $(".project-entry:last").append(formattedTitle);
 
-    var formattedTitle = HTMLprojectTitle.replace("%data%", projects.projects[project].title);
-    $(".project-entry:last").append(formattedTitle);
+      var formattedDates = HTMLprojectDates.replace("%data%", projects.projects[project].dates);
+      $(".project-entry:last").append(formattedDates);
 
-    var formattedDates = HTMLprojectDates.replace("%data%", projects.projects[project].dates);
-    $(".project-entry:last").append(formattedDates);
+      var formattedDescription = HTMLprojectDescription.replace("%data%", projects.projects[project].description);
+      $(".project-entry:last").append(formattedDescription);
 
-    var formattedDescription = HTMLprojectDescription.replace("%data%", projects.projects[project].description);
-    $(".project-entry:last").append(formattedDescription);
-
-    if (projects.projects[project].images.length > 0) {
-      for (image in projects.projects[project].images) {
-        var formattedImage = HTMLprojectImage.replace("%data%", projects.projects[project].images[image]);
-        $(".project-entry:last").append(formattedImage);
+      if (projects.projects[project].images.length > 0) {
+        for (image in projects.projects[project].images) {
+          var formattedImage = HTMLprojectImage.replace("%data%", projects.projects[project].images[image]);
+          $(".project-entry:last").append(formattedImage);
+        }
       }
     }
   }
@@ -116,39 +192,10 @@ $(document).click(function(loc) {
   logClicks(x,y);
 });
 
-$("#header").append(HTMLheaderName.replace("%data%", bio.name));
+bio.display();
+work.display();
+education.display();
+projects.display();
 
-function displayWork() {
-  for (job in work.jobs) {
-    $("#workExperience").append(HTMLworkStart);
 
-    var formattedEmployer = HTMLworkEmployer.replace("%data%", work.jobs[job].employer);
-    var formattedTitle = HTMLworkTitle.replace("%data%", work.jobs[job].title);
-    var formattedEmplyerTitle = formattedEmployer + formattedTitle;
-
-    var formattedDates = HTMLworkDates.replace("%data%", work.jobs[job].dates);
-    $(".work-entry:last").append(formattedDates);
-
-    var formattedDescription = HTMLworkDescription.replace("%data%", work.jobs[job].description);
-    $(".work-entry:last").append(formattedDescription);
-
-    $(".work-entry:last").append(formattedEmplyerTitle);
-  }
-}
-
-displayWork();
-
-if (bio.skills.length > 0) {
-
-  $("#header").append(HTMLskillsStart);
-  var formattedSkill = HTMLskills.replace("%data%", bio.skills[0]);
-  $("#skills").append(formattedSkill);
-  formattedSkill = HTMLskills.replace("%data%", bio.skills[1]);
-  $("#skills").append(formattedSkill);
-  formattedSkill = HTMLskills.replace("%data%", bio.skills[2]);
-  $("#skills").append(formattedSkill);
-  formattedSkill = HTMLskills.replace("%data%", bio.skills[3]);
-  $("#skills").append(formattedSkill);
-  formattedSkill = HTMLskills.replace("%data%", bio.skills[4]);
-  $("#skills").append(formattedSkill);
-}
+$("#mapDiv").append(googleMap);

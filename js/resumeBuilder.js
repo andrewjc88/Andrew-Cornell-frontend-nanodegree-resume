@@ -121,11 +121,11 @@ var education = {
         var formattedSchoolName = HTMLschoolName.replace('%data%', educations[edu].name).replace("#", educations[edu].url);
         $('.education-entry:last').append(formattedSchoolName);
 
-        var myDates = HTMLschoolDates.replace('%data%', educations[edu].dates);
-        $('.education-entry:last').append(myDates);
+        var formattedSchoolDates = HTMLschoolDates.replace('%data%', educations[edu].dates);
+        $('.education-entry:last').append(formattedSchoolDates);
 
-        var myLocation = HTMLschoolLocation.replace('%data%', educations[edu].location);
-        $('.education-entry:last').append(myLocation);
+        var formattedSchoolLocations = HTMLschoolLocation.replace('%data%', educations[edu].location);
+        $('.education-entry:last').append(formattedSchoolLocations);
 
         var formattedMajor = HTMLschoolMajor.replace('%data%', educations[edu].major);
         $('.education-entry:last').append(formattedMajor);
@@ -140,7 +140,7 @@ var projects = {
       "dates": "2015-2016",
       "description": "I made a website. It was a chill site for sure!",
       "images": [
-        "images/coding.jpg"
+        "images/t49.png"
       ]
     },
     {
@@ -148,7 +148,7 @@ var projects = {
       "dates": "2016-2017",
       "description": "Made a profesional resume site using jQuery and Javascript.",
       "images": [
-          "images/hipcat.jpg"
+          "images/rectify.png"
       ]
     }
   ],

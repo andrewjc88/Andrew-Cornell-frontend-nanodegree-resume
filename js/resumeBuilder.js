@@ -89,25 +89,31 @@ var education = {
       "name": "Cabrillo College",
       "location": "Santa Cruz, CA",
       "major": "Computer Science",
-      "dates": "2016 - 2017"
+      "dates": "2016 - 2017",
+      "url": "http://www.cabrillo.edu/",
+      "degree": "Associates Computer Science",
     },
     {
       "name": "Sierra College",
       "location": "Nevada City, Ca",
       "major": "Computer engineering",
-      "dates": "2010 – 2012"
+      "dates": "2010 – 2012",
+      "edu": "http://www.sierracollege.edu/",
+      "degree": "Associates Computer Science",
     }
   ],
   "onlineCourses": [
     {
-      "title": "Front_End Nano degree",
+      "title": "Front-End Web Nano degree",
       "school": "Udacity",
-      "dates": "2016 - Current"
+      "dates": "2016 - Current",
+      "url": "https://www.udacity.com/course/front-end-web-developer-nanodegree--nd001",
     },
     {
-      "title": "Mobile UX Design",
+      "title": "UX Design for Mobile Developers",
       "school": "Udacity",
-      "dates": "2017 - Current"
+      "dates": "2017 - Current",
+      "url": "https://www.udacity.com/course/ux-design-for-mobile-developers--ud849",
     }
   ],
   "display": function() {
@@ -119,7 +125,8 @@ var education = {
         var educations = education.schools;
 
         var formattedSchoolName = HTMLschoolName.replace('%data%', educations[edu].name).replace("#", educations[edu].url);
-        $('.education-entry:last').append(formattedSchoolName);
+        var formattedSchoolDegree = HTMLschoolDegree.replace('%data%', educations[edu].degree);
+        $('.education-entry:last').append(formattedSchoolName + formattedSchoolDegree);
 
         var formattedSchoolDates = HTMLschoolDates.replace('%data%', educations[edu].dates);
         $('.education-entry:last').append(formattedSchoolDates);
@@ -130,6 +137,26 @@ var education = {
         var formattedMajor = HTMLschoolMajor.replace('%data%', educations[edu].major);
         $('.education-entry:last').append(formattedMajor);
     });
+
+    $('#education').append(HTMLonlineClasses);
+
+    $.each(education.onlineCourses, function(courseInfo) {
+      $('#education').append(HTMLschoolStart);
+
+      var courses = education.onlineCourses;
+
+      var formattedClassName = HTMLonlineTitle.replace('%data%', courses[courseInfo].title);
+      var formattedClassSchool = HTMLonlineSchool.replace('%data%', courses[courseInfo].school);
+      $('.education-entry:last').append(formattedClassName + formattedClassSchool);
+
+      var formattedClassDates = HTMLonlineDates.replace('%data%', courses[courseInfo].dates);
+      $('.education-entry:last').append(formattedClassDates);
+
+      var formattedClassURL = HTMLonlineURL.replace('%data%', courses[courseInfo].url);
+      $('.education-entry:last').append(formattedClassURL);
+
+
+    })
   }
 };
 

@@ -156,7 +156,7 @@ var education = {
       $('.education-entry:last').append(formattedClassURL);
 
 
-    })
+    });
   }
 };
 
@@ -180,27 +180,27 @@ var projects = {
     }
   ],
   "display": function() {
-    for (project in projects.projects) {
+    $.each(projects.projects, function(proj) {
       $("#projects").append(HTMLprojectStart);
 
-      var formattedTitle = HTMLprojectTitle.replace("%data%", projects.projects[project].title);
+      var projex = projects.projects[proj];
+
+      var formattedTitle = HTMLprojectTitle.replace("%data%", projex.title);
       $(".project-entry:last").append(formattedTitle);
 
-      var formattedDates = HTMLprojectDates.replace("%data%", projects.projects[project].dates);
+      var formattedDates = HTMLprojectDates.replace("%data%", projex.dates);
       $(".project-entry:last").append(formattedDates);
 
-      var formattedDescription = HTMLprojectDescription.replace("%data%", projects.projects[project].description);
+      var formattedDescription = HTMLprojectDescription.replace("%data%", projex.description);
       $(".project-entry:last").append(formattedDescription);
 
-      if (projects.projects[project].images.length > 0) {
-        for (image in projects.projects[project].images) {
-          var formattedImage = HTMLprojectImage.replace("%data%", projects.projects[project].images[image]);
-          $(".project-entry:last").append(formattedImage);
-        }
-      }
-    }
+      $.each(projex.images, function(img) {
+        var formattedImage = HTMLprojectImage.replace("%data%", projex.images[img]);
+        $(".project-entry:last").append(formattedImage);
+      });
+    });
   }
-}
+};
 
 function inName(name) {
   name = name.trim().split(" ");

@@ -88,7 +88,7 @@ var education = {
     {
       "name": "Cabrillo College",
       "location": "Santa Cruz, CA",
-      "major": ["Computer Science"],
+      "majors": ["Computer Science"],
       "dates": "2016 - 2017",
       "url": "http://www.cabrillo.edu/",
       "degree": "Associates Computer Science",
@@ -96,7 +96,7 @@ var education = {
     {
       "name": "Sierra College",
       "location": "Nevada City, Ca",
-      "major": ["Computer engineering"],
+      "majors": ["Computer engineering"],
       "dates": "2010 – 2012",
       "edu": "http://www.sierracollege.edu/",
       "degree": "Associates Computer Science",
@@ -134,7 +134,7 @@ var education = {
         var formattedSchoolLocations = HTMLschoolLocation.replace('%data%', educations[edu].location);
         $('.education-entry:last').append(formattedSchoolLocations);
 
-        var formattedMajor = HTMLschoolMajor.replace('%data%', educations[edu].major);
+        var formattedMajor = HTMLschoolMajor.replace('%data%', educations[edu].majors);
         $('.education-entry:last').append(formattedMajor);
     });
 
